@@ -7,23 +7,20 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: miniflux
     volumes:
-      - miniflux-postgres:/var/lib/postgresql/data
+    - miniflux-postgres:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U miniflux -d miniflux"]
       interval: 10s
       timeout: 5s
       retries: 5
-
   app:
     image: miniflux/miniflux:latest
     restart: unless-stopped
     depends_on:
       postgres:
         condition: service_healthy
-    ports:
-      - "8080:8080"
     expose:
-      - "8080"
+    - "8080"
     environment:
       DATABASE_URL: postgres://miniflux:${POSTGRES_PASSWORD}@postgres/miniflux?sslmode=disable
       RUN_MIGRATIONS: "1"
@@ -35,6 +32,5 @@ services:
       interval: 30s
       timeout: 5s
       retries: 5
-
 volumes:
   miniflux-postgres:
