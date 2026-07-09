@@ -14,7 +14,7 @@ services:
       timeout: 5s
       retries: 5
 
-  miniflux:
+  app:
     image: miniflux/miniflux:latest
     restart: unless-stopped
     depends_on:

@@ -8,6 +8,7 @@ It does not fork or modify Miniflux. The repo provides a self-contained compose 
 - app port: `8080`
 - bundled PostgreSQL 16 service
 - automatic migrations and first admin creation
+- public service named `app` so Coolify/VibeNest can bind the template domain to the web container consistently.
 
 ## VibeNest notes
 
